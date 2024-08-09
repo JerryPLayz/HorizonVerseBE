@@ -21,15 +21,25 @@ This presumes that such functionality has been implemented.
 - GET `/api/open/general/search/<terms>`
 
 Takes generalized search terms and returns a list of possible matches across the database.
+The information returned in this search is not authoritative, and may rely on the `/query` extension for contextualizing reqests.
 ```json
 {
+  "status": 200,
+  "message": "OK",
   "search": {
     "hex_1234": {"type": "star", "preferred_name": "Beta Eridani"},
     "hex_1234a": {"type": "body", "preferred_name": "Beta Eridani A"}
   }
 }
 ```
-- GET `/api/open/general/query/<object>`
+- GET `/api/open/general/query/<identifier>`
+
+Queries the backend for an object with a specific identifier (always marked 'hex_1234*' in this documentation)
+Will return a variable object.
+```json
+
+```
+
 
 # Galaxy Map Module
 - This module 
