@@ -21,6 +21,7 @@ System XYZ
 |     | -> Saturn (*,parent=Star 2, ...)
 |           | -> Europa (*,parent=Saturn, ...)
 |     | -> Jupiter (*, parent=Star 2, ...)
+| -> Nemesis (systemid=System XYZ) [PLANET]
 ```
 All Objects in a system have a `Distance` and `Angular_Offset_Deg`, 
 which define the distance (in simulation units) 
@@ -53,11 +54,42 @@ Encoding is based on the API scopes.
    }
 }
 ```
-Note that Arity and Temperature are determined fields by the number of stars in the system and composite spectrum; it's not present in the `SystemTB` datamodel.
+Note that Arity and Temperature are determined (calculated) fields by the number of stars in the system and composite spectrum; it's not present in the `SystemTB` datamodel.
 
 
-- `/api/open/sysmap/get/stars/<systemid>`
-
+- `/api/open/sysmap/get/barycenter/<systemid>`
+```json
+{
+   "status": 200,
+   "message": "OK",
+   "systemid": {
+      "Star 1": {
+         "Name": "Sol",
+         "Type": "Star",
+         "Star_Class": "G",
+         "Temperature": [200,100,100],
+         "Distance": 0,
+         "Angular_Offset_Deg": 0,
+         "Child_Bodies": ["Murcury","Venus","Earth"]
+      },
+      "Star 2": {
+         "Name": "Nemesis",
+         "Type": "Star",
+         "Star_Class": "Dwarf",
+         "Temperature": [255,25,25],
+         "Distance": 100,
+         "Angular_Offset_Deg": 0,
+         "Child_Bodies": ["Mars", "Jupiter", "Saturn"]
+      },
+      "Nemesis": {
+         "Name": "Nemesis",
+         "Type": "Planet",
+         
+      }
+   }
+   
+}
+```
 
 # Decoding (from Json from Flask REST API)
 This will be decoded in series on the front end in the order shown below (to ensure referential integrity):
