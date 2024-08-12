@@ -1,6 +1,30 @@
 # System Generation Specification
 
-A System is defined as a collection of stars and a number of bodies; which can be children of other bodies/stars.
+A System is defined as a collection of Bodies - a class prototype. Bodies may be the children of other bodies.
+In the present model of the Database, no restriction on which kind of bodies may be the parent of other bodies - as that is an application rule.
+Functionally, there is **planned** to be four or five types of bodies (which all uniquely) subclass, defining additional features and behaviours.
+The kinds of Bodies are shown below:
+- **VOID**
+  - Default; not intended for production; instead acting as a failsafe in the case of an integrity violation; does not define any additional parameters.
+- **Star**
+  - Defines the key properties of a star, including:
+    - Temperature (RGB and Kelvin),
+    - Mass (in ratio with the Solar Mass of the Sun; 1=Mass of the Sun),
+    - Radius (in ratio with the Solar Radius of the Sun; 1=Radius of the Sun),
+    - Star Class (one of \[M,K,G,F,A,B,O...\], which defines the archetype and limits of the above temperature, mass and radius; as well as the proportion in the milky-way for auto-generation purposes.)
+  - (*) Note that Star Class can be extended to reflect more specialized types of stellar pheneomena- as it is another table.
+- **Planet**
+  - Define the key properties of a planet (of any size, including dwarf)
+    - d
+- **Asteroid Belt**
+  - Defines the key properties of an Asteroid belt.
+  - Due to its unique state as a circular belt of asteroids (simplified from eccentric-) its anchor is always at the midpoint of the circle.
+  - This means that angle does not matter to an asteroid belt, instead only distance (the radius of the circle) is material.
+  - The properties of an asteroid belt can be summarised as:
+    - Composition; and
+    - 
+- **Trojan Belt**
+
 
 
 A System Hierarchy may look like (ignoring realistic requirements):
